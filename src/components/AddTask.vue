@@ -1,9 +1,11 @@
 <template>
-  <div class="bg-customGray-100 mb-4 rounded-md shadow-customGray-900 shadow px-3 py-1">
+  <div
+    class="bg-customGray-100 mb-4 rounded-md shadow-customGray-900 shadow px-3 py-1"
+  >
     <div class="grid gap-2 grid-cols-8 items-center">
       <form @submit.prevent="onSubmit" class="add-form">
         <span class="justify-self-start pl-2">
-          <i class="fa fa-light fa-circle"></i>
+          <i class="fa fa-light fa-circle cursor-pointer"></i>
         </span>
         <span class="col-start-2 col-span-7 pr-2">
           <input

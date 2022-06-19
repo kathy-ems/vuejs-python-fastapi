@@ -7,18 +7,18 @@
     },
     {
       "id": 2,
-      "text": "Meeting at school",
+      "text": "Grocery Shopping",
       "completed": true
     },
     {
       "id": 3,
-      "text": "Water Trees",
-      "completed": false
+      "text": "Meeting at School",
+      "completed": true
     },
     {
       "id": 4,
-      "text": "Grocery shopping",
-      "completed": true
+      "text": "Mail Letters",
+      "completed": false
     },
     {
       "text": "Dentist appt",

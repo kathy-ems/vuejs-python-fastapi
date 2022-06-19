@@ -1,26 +1,29 @@
 <template>
   <div class="bg-customGray-100 border-customGray-400 border-b px-3 py-1">
     <div class="grid gap-2 grid-cols-8 items-center">
-      <span class="justify-self-start pl-2">
-        <i
-          @click="$emit('toggle-completed')"
-          :class="[
-            task.completed
-              ? 'fa-solid fa-circle-check'
-              : 'fa fa-light fa-circle',
-          ]"
-        ></i>
-      </span>
       <span
+        class="justify-self-start cursor-pointer"
+        @click="$emit('toggle-completed')"
         :class="[
           task.completed ? 'line-through text-grayBlue-200' : '',
-          'col-start-2 col-end-7',
+          'col-start-1 col-end-7',
         ]"
       >
-        {{ task.text }}
+        <span class="pl-2">
+          <i
+            :class="[
+              task.completed
+                ? 'fa-solid fa-circle-check'
+                : 'fa fa-light fa-circle',
+            ]"
+          ></i>
+        </span>
+        <span class="pl-3">
+          {{ task.text }}
+        </span>
       </span>
       <span class="col-start-8 col-span-1 justify-self-end pr-2">
-        <i @click="$emit('delete-task')" class="fas fa-times" />
+        <i @click="$emit('delete-task')" class="fas fa-times cursor-pointer" />
       </span>
     </div>
   </div>

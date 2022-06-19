@@ -4,7 +4,9 @@
     <Tasks
       @toggle-completed="toggleCompleted"
       @delete-task="deleteTask"
+      @sort-items="sortItems"
       :tasks="tasks"
+      :openItems="openItems"
     />
   </div>
 </template>
@@ -23,6 +25,7 @@ export default {
   data() {
     return {
       tasks: [],
+      openItems: 0,
     };
   },
   methods: {
@@ -36,6 +39,7 @@ export default {
       });
       const data = await res.json();
       this.tasks = [...this.tasks, data];
+      this.getOpenItems(this.tasks);
     },
     async toggleCompleted(id) {
       const taskToToggle = await this.fetchTask(id);
@@ -54,20 +58,42 @@ export default {
       this.tasks = this.tasks.map((task) =>
         task.id === id ? { ...task, completed: data.completed } : task
       );
+      this.getOpenItems(this.tasks);
     },
     async fetchTask(id) {
       const res = await fetch(`api/tasks/${id}`);
       const data = await res.json();
       return data;
     },
-    async deleteTask(id) {
-      if (confirm("Delete task?")) {
+    async deleteTask(task) {
+      const id = task.id;
+      if (confirm(`Delete task ${task.text}?`)) {
         const res = await fetch(`api/tasks/${id}`, {
           method: "DELETE",
         });
         res.status === 200
           ? (this.tasks = this.tasks.filter((task) => task.id !== id))
           : alert("Error deleting task");
+        this.getOpenItems(this.tasks);
+      }
+    },
+    getOpenItems(tasks) {
+      const openItems = tasks.filter((task) => task.completed === false);
+      this.openItems = openItems.length;
+    },
+    async sortItems(sorter) {
+      this.tasks = await this.fetchTasks();
+      if (sorter === "active") {
+        this.tasks = this.tasks.filter((task) => task.completed === false);
+      }
+      if (sorter === "completed") {
+        this.tasks = this.tasks.filter((task) => task.completed === true);
+      }
+      if (sorter === "clear") {
+        const toDelete = this.tasks.filter((task) => task.completed === true);
+        toDelete.forEach(async (task) => {
+          await this.deleteTask(task);
+        });
       }
     },
     async fetchTasks() {
@@ -78,6 +104,8 @@ export default {
   },
   async created() {
     this.tasks = await this.fetchTasks();
+    this.getOpenItems(this.tasks);
   },
+  emits: ["sort-items"],
 };
 </script>

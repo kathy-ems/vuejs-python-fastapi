@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-customGray-400 h-screen">
-    <div class="container pb-96 bg-purple grid justify-items-center">
-      <div class="h-auto w-96 bg-transparent">
+  <div class="bg-purple h-screen">
+    <div class="container h-screen bg-purple grid justify-items-center">
+      <div class="bg-transparent max-w-screen-sm">
         <Header />
         <router-view />
       </div>
