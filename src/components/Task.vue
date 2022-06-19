@@ -6,14 +6,14 @@
           @click="$emit('toggle-completed')"
           :class="[
             task.completed
-              ? 'fa fa-light fa-circle'
-              : 'fa-solid fa-circle-check',
+              ? 'fa-solid fa-circle-check'
+              : 'fa fa-light fa-circle',
           ]"
         ></i>
       </span>
       <span
         :class="[
-          task.completed ? '' : 'line-through text-grayBlue-200',
+          task.completed ? 'line-through text-grayBlue-200' : '',
           'col-start-2 col-end-7',
         ]"
       >

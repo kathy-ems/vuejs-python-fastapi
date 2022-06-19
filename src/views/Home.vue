@@ -1,5 +1,6 @@
 <template>
   <div>
+    <AddTask @add-task="addTask" />
     <Tasks
       @toggle-completed="toggleCompleted"
       @delete-task="deleteTask"
@@ -11,11 +12,13 @@
 <script>
 // @ is an alias to /src
 import Tasks from "@/components/Tasks.vue";
+import AddTask from "@/components/AddTask.vue";
 
 export default {
   name: "Home",
   components: {
     Tasks,
+    AddTask,
   },
   data() {
     return {
@@ -23,6 +26,17 @@ export default {
     };
   },
   methods: {
+    async addTask(task) {
+      const res = await fetch("api/tasks", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(task),
+      });
+      const data = await res.json();
+      this.tasks = [...this.tasks, data];
+    },
     async toggleCompleted(id) {
       const taskToToggle = await this.fetchTask(id);
       const toggledTask = {
