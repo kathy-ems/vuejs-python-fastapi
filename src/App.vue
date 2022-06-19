@@ -1,11 +1,11 @@
 <template>
-  <div class="bg-purple h-screen dark:bg-dmPurple" :class="mode">
-    <div
-      class="container h-screen bg-purple dark:bg-dmPurple grid justify-items-center"
-    >
-      <div class="bg-transparent max-w-screen-sm min-w-min">
-        <Header :mode="mode" @change-mode="changeMode" />
-        <router-view />
+  <div :class="mode">
+    <div class="h-screen bg-purple dark:bg-dmPurple">
+      <div class="container grid justify-items-center">
+        <div class="bg-transparent max-w-screen-sm min-w-min">
+          <Header :mode="mode" @change-mode="changeMode" />
+          <router-view />
+        </div>
       </div>
     </div>
   </div>
@@ -34,5 +34,5 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.google.com/specimen/Josefin+Sans:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
 </style>

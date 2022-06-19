@@ -1,7 +1,7 @@
 <template>
   <header class="bg-transparent py-10 grid gap-1 grid-cols-8">
     <span
-      class="text-5xl text-customGray-100 tracking-widest font-bold col-start-1"
+      class="text-4xl text-customGray-100 tracking-widest font-bold col-start-1"
       >TODO</span
     >
     <span

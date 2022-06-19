@@ -43,6 +43,9 @@ module.exports = {
         },
       },
     },
+    fontFamily: {
+      sans: ["Josefin Sans", "Sans-serif"],
+    },
   },
   plugins: [],
 };

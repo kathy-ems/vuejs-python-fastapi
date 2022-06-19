@@ -10,7 +10,9 @@
           :task="task"
         />
       </div>
-      <div class="p-4 text-xs grid gap-2 grid-cols-8 justify-items-center">
+      <div
+        class="text-grayBlue-400 dark:text-dmGrayBlue-100 p-4 text-xs grid gap-2 grid-cols-8 justify-items-center"
+      >
         <span class="col-start-1 col-span-2">
           {{ openItems }} items to do
         </span>

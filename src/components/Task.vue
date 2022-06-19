@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-customGray-100 dark:bg-dmGrayBlue-410 border-customGray-400 dark:border-dmGrayBlue-400 border-b px-3 py-1"
+    class="text-grayBlue-400 dark:text-dmGrayBlue-100 bg-customGray-100 dark:bg-dmGrayBlue-410 border-customGray-400 dark:border-dmGrayBlue-400 border-b px-3 py-1"
   >
     <div class="grid gap-2 grid-cols-8 items-center">
       <span
