@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-100 border-gray-400 border-b px-3 py-1">
+  <div class="bg-customGray-100 border-customGray-400 border-b px-3 py-1">
     <div class="grid gap-2 grid-cols-8 items-center">
       <span class="justify-self-start pl-2">
         <i
@@ -34,3 +34,28 @@ export default {
   },
 };
 </script>
+
+<style>
+.fa-circle-check {
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right bottom,
+    from(hsl(192, 100%, 67%)),
+    to(hsl(280, 87%, 65%))
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.fa-circle {
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right bottom,
+    from(hsl(192, 100%, 67%)),
+    to(hsl(280, 87%, 65%))
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+</style>

@@ -7,12 +7,16 @@ module.exports = {
         center: true,
         padding: "2rem",
       },
+      fontSize: {
+        xs: ".75rem",
+        base: "1.125rem", // 18px
+      },
       colors: {
         brightBlue: "hsl(220, 98%, 61%)",
         teal: "hsl(192, 100%, 67%)",
         purple: "hsl(280, 87%, 65%)",
         // Light Mode (higher number = darker)
-        gray: {
+        customGray: {
           100: "hsl(0, 0%, 100%)", // white
           200: "hsl(0, 0%, 98%)",
           400: "hsl(0, 0%, 70%)",
@@ -36,10 +40,6 @@ module.exports = {
           410: "hsl(237, 14%, 26%)",
         },
       },
-    },
-    fontSize: {
-      xs: ".75rem",
-      base: "1.125rem", // 18px
     },
   },
   plugins: [],

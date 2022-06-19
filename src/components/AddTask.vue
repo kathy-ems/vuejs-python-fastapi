@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-100 mb-4 rounded-md shadow-gray-900 shadow px-3 py-1">
+  <div class="bg-customGray-100 mb-4 rounded-md shadow-customGray-900 shadow px-3 py-1">
     <div class="grid gap-2 grid-cols-8 items-center">
       <form @submit.prevent="onSubmit" class="add-form">
         <span class="justify-self-start pl-2">

@@ -1,6 +1,8 @@
 <template>
-  <header class="bg-blue-300 py-10">
-    <h1>To Do</h1>
+  <header class="bg-transparent py-10">
+    <span class="text-7xl text-customGray-100">TODO</span>
+    <!-- <i class="fa-solid fa-moon"></i>
+    <i class="fa-solid fa-brightness"></i> -->
   </header>
 </template>
 

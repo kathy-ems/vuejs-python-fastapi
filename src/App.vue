@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-gray-400">
-    <div class="container h-auto bg-brightBlue">
-      <div class="h-auto w-96 bg-teal">
+  <div class="bg-customGray-400 h-screen">
+    <div class="container pb-96 bg-purple grid justify-items-center">
+      <div class="h-auto w-96 bg-transparent">
         <Header />
         <router-view />
       </div>
@@ -16,7 +16,7 @@ export default {
   name: "App",
   components: {
     Header,
-  }
+  },
 };
 </script>
 
