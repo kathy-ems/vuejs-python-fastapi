@@ -1,11 +1,14 @@
 <template>
   <div>
-    <div>I am a task</div>
+    <div>{{ task.text }}</div>
   </div>
 </template>
 
 <script>
 export default {
   name: "Task",
+  props: {
+    task: Object,
+  },
 };
 </script>
