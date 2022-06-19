@@ -1,11 +1,15 @@
 <template>
-  <div class="bg-customGray-100 border-customGray-400 border-b px-3 py-1">
+  <div
+    class="bg-customGray-100 dark:bg-dmGrayBlue-410 border-customGray-400 dark:border-dmGrayBlue-400 border-b px-3 py-1"
+  >
     <div class="grid gap-2 grid-cols-8 items-center">
       <span
         class="justify-self-start cursor-pointer"
         @click="$emit('toggle-completed')"
         :class="[
-          task.completed ? 'line-through text-grayBlue-200' : '',
+          task.completed
+            ? 'line-through text-grayBlue-200 dark:text-dmGrayBlue-300'
+            : '',
           'col-start-1 col-end-7',
         ]"
       >

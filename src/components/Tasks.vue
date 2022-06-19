@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="bg-customGray-100 rounded-md shadow-customGray-900 shadow-2xl py-2"
+      class="bg-customGray-100 dark:bg-dmGrayBlue-410 rounded-md shadow-customGray-900 dark:shadow-dmBlue40 shadow-2xl py-2"
     >
       <div :key="task.id" v-for="task in tasks">
         <Task
@@ -16,25 +16,25 @@
         </span>
         <span
           @click="$emit('sort-items', 'all')"
-          class="cursor-pointer hover:underline hover:text-teal col-start-3 col-span-1 justify-self-end"
+          class="cursor-pointer hover:underline hover:text-brightBlue col-start-3 col-span-1 justify-self-end"
         >
           All</span
         >
         <span
           @click="$emit('sort-items', 'active')"
-          class="cursor-pointer hover:underline hover:text-teal col-start-4 col-span-1"
+          class="cursor-pointer hover:underline hover:text-brightBlue col-start-4 col-span-1"
         >
           Active</span
         >
         <span
           @click="$emit('sort-items', 'completed')"
-          class="cursor-pointer hover:underline hover:text-teal col-start-5 col-span-1"
+          class="cursor-pointer hover:underline hover:text-brightBlue col-start-5 col-span-1"
         >
           Completed</span
         >
         <span
           @click="$emit('sort-items', 'clear')"
-          class="cursor-pointer hover:underline hover:text-teal col-start-7 col-span-2 pr-2"
+          class="cursor-pointer hover:underline hover:text-brightBlue col-start-7 col-span-2 pr-2"
         >
           Clear Completed</span
         >

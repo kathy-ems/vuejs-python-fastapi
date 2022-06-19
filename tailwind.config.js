@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./public/**/*.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+  darkMode: "class",
   theme: {
     extend: {
       container: {
@@ -15,6 +16,7 @@ module.exports = {
         brightBlue: "hsl(220, 98%, 61%)",
         teal: "hsl(192, 100%, 67%)",
         purple: "hsl(280, 87%, 65%)",
+        dmPurple: "hsl(280, 87%, 20%)",
         // Light Mode (higher number = darker)
         customGray: {
           100: "hsl(0, 0%, 100%)", // white

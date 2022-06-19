@@ -3,3 +3,7 @@
 @tailwind components;
 
 @tailwind utilities;
+
+.display-none {
+  @apply hidden;
+}

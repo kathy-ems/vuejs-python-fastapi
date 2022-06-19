@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-customGray-100 mb-4 rounded-md shadow-customGray-900 shadow px-3 py-1"
+    class="bg-customGray-100 dark:bg-dmGrayBlue-410 dark:text-dmGrayBlue-300 mb-4 rounded-md shadow-customGray-900 shadow px-3 py-1"
   >
     <div class="grid gap-2 grid-cols-8 items-center">
       <form @submit.prevent="onSubmit" class="add-form">
@@ -13,6 +13,7 @@
             v-model="text"
             name="text"
             placeholder="Add New Task"
+            class="bg-customGray-100 dark:bg-dmGrayBlue-410"
           />
         </span>
       </form>

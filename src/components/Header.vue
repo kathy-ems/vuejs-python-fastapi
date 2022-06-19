@@ -1,15 +1,25 @@
 <template>
-  <header class="bg-transparent py-10">
-    <span class="text-5xl text-customGray-100 tracking-widest font-bold"
+  <header class="bg-transparent py-10 grid gap-1 grid-cols-8">
+    <span
+      class="text-5xl text-customGray-100 tracking-widest font-bold col-start-1"
       >TODO</span
     >
-    <!-- <i class="fa-solid fa-moon"></i>
-    <i class="fa-solid fa-brightness"></i> -->
+    <span
+      class="text-customGray-100 col-start-8 col-span-1 justify-self-end pr-2"
+    >
+      <i
+        :class="[mode === 'light' ? 'fa-moon' : 'fa-sun', 'fa-solid']"
+        @click="$emit('change-mode')"
+      ></i>
+    </span>
   </header>
 </template>
 
 <script>
 export default {
   name: "Header",
+  props: {
+    mode: Boolean,
+  },
 };
 </script>
