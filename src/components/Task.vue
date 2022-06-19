@@ -20,7 +20,7 @@
         {{ task.text }}
       </span>
       <span class="col-start-8 col-span-1 justify-self-end pr-2">
-        <i class="fas fa-times" />
+        <i @click="$emit('delete-task')" class="fas fa-times" />
       </span>
     </div>
   </div>

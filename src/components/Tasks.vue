@@ -4,6 +4,7 @@
       <div :key="task.id" v-for="task in tasks">
         <Task
           @toggle-completed="$emit('toggle-completed', task.id)"
+          @delete-task="$emit('delete-task', task.id)"
           :task="task"
         />
       </div>
@@ -22,6 +23,6 @@ export default {
   components: {
     Task,
   },
-  emits: ["toggle-reminder"],
+  emits: ["toggle-reminder", "delete-task"],
 };
 </script>

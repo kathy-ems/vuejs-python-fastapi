@@ -1,6 +1,10 @@
 <template>
   <div>
-    <Tasks @toggle-completed="toggleCompleted" :tasks="tasks" />
+    <Tasks
+      @toggle-completed="toggleCompleted"
+      @delete-task="deleteTask"
+      :tasks="tasks"
+    />
   </div>
 </template>
 
@@ -23,6 +27,11 @@ export default {
       this.tasks = this.tasks.map((task) =>
         task.id === id ? { ...task, completed: !task.completed } : task
       );
+    },
+    deleteTask(id) {
+      if (confirm("Delete task?")) {
+        this.tasks = this.tasks.filter((task) => task.id !== id);
+      }
     },
   },
   created() {
