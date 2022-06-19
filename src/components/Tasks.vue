@@ -2,7 +2,10 @@
   <div>
     <div>
       <div :key="task.id" v-for="task in tasks">
-        <Task :task="task" />
+        <Task
+          @toggle-completed="$emit('toggle-completed', task.id)"
+          :task="task"
+        />
       </div>
     </div>
   </div>
@@ -19,5 +22,6 @@ export default {
   components: {
     Task,
   },
+  emits: ["toggle-reminder"],
 };
 </script>

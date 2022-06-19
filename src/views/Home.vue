@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Tasks :tasks="tasks" />
+    <Tasks @toggle-completed="toggleCompleted" :tasks="tasks" />
   </div>
 </template>
 
@@ -17,6 +17,13 @@ export default {
     return {
       tasks: [],
     };
+  },
+  methods: {
+    toggleCompleted(id) {
+      this.tasks = this.tasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      );
+    },
   },
   created() {
     this.tasks = [
