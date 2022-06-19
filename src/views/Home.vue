@@ -23,40 +23,47 @@ export default {
     };
   },
   methods: {
-    toggleCompleted(id) {
+    async toggleCompleted(id) {
+      const taskToToggle = await this.fetchTask(id);
+      const toggledTask = {
+        ...taskToToggle,
+        completed: !taskToToggle.completed,
+      };
+      const res = await fetch(`api/tasks/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(toggledTask),
+      });
+      const data = await res.json();
       this.tasks = this.tasks.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task
+        task.id === id ? { ...task, completed: data.completed } : task
       );
     },
-    deleteTask(id) {
+    async fetchTask(id) {
+      const res = await fetch(`api/tasks/${id}`);
+      const data = await res.json();
+      return data;
+    },
+    async deleteTask(id) {
       if (confirm("Delete task?")) {
-        this.tasks = this.tasks.filter((task) => task.id !== id);
+        const res = await fetch(`api/tasks/${id}`, {
+          method: "DELETE",
+        });
+        res.status === 200
+          ? (this.tasks = this.tasks.filter((task) => task.id !== id))
+          : alert("Error deleting task");
       }
     },
+    async fetchTasks() {
+      const res = await fetch("api/tasks");
+      const data = await res.json();
+      return data;
+    },
   },
-  created() {
-    this.tasks = [
-      {
-        id: 1,
-        text: "Doctors appt",
-        completed: true,
-      },
-      {
-        id: 2,
-        text: "Meeting at school",
-        completed: false,
-      },
-      {
-        id: 3,
-        text: "Water Trees",
-        completed: false,
-      },
-      {
-        id: 4,
-        text: "Grocery shopping",
-        completed: true,
-      },
-    ];
+  async created() {
+    this.tasks = await this.fetchTasks();
   },
 };
 </script>

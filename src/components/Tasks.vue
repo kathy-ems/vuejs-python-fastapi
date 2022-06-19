@@ -23,6 +23,6 @@ export default {
   components: {
     Task,
   },
-  emits: ["toggle-reminder", "delete-task"],
+  emits: ["toggle-completed", "delete-task"],
 };
 </script>
