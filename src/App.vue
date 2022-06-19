@@ -1,13 +1,25 @@
 <template>
-  <router-view />
+  <div class="bg-gray-400">
+    <div class="container h-auto bg-brightBlue">
+      <div class="h-auto w-96 bg-teal">
+        <Header />
+        <router-view />
+      </div>
+    </div>
+  </div>
 </template>
 
+<script>
+import Header from "./components/Header";
+
+export default {
+  name: "App",
+  components: {
+    Header,
+  },
+};
+</script>
+
 <style>
-#app {
-  /* font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50; */
-}
+@import url("https://fonts.google.com/specimen/Josefin+Sans:wght@400;700&display=swap");
 </style>
