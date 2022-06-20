@@ -13,21 +13,26 @@
           'col-start-1 col-end-7',
         ]"
       >
-        <span class="pl-2">
-          <i
-            :class="[
-              task.completed
-                ? 'fa-solid fa-circle-check'
-                : 'fa fa-light fa-circle',
-            ]"
-          ></i>
+        <span
+          :class="[
+            task.completed
+              ? 'pl-1 bg-gradient-to-r from-teal to-purple border-none rounded-full'
+              : 'tag:button w-5 h-5 rounded-full bg-transparent border inline-block align-middle border-dmGrayBlue-300',
+          ]"
+        >
+          <img
+            v-show="task.completed"
+            :src="this.icons.iconCheck"
+            alt="Check box"
+            class="inline-block align-text-left pr-1"
+          />
         </span>
-        <span class="pl-3">
+        <span class="pl-7">
           {{ task.text }}
         </span>
       </span>
       <span class="col-start-8 col-span-1 justify-self-end pr-2">
-        <i @click="$emit('delete-task')" class="fas fa-times cursor-pointer" />
+        <img :src="this.icons.iconCross" alt="Delete" class="inline-block" />
       </span>
     </div>
   </div>
@@ -38,31 +43,7 @@ export default {
   name: "Task",
   props: {
     task: Object,
+    icons: Object,
   },
 };
 </script>
-
-<style>
-.fa-circle-check {
-  background: -webkit-gradient(
-    linear,
-    left top,
-    right bottom,
-    from(hsl(192, 100%, 67%)),
-    to(hsl(280, 87%, 65%))
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.fa-circle {
-  background: -webkit-gradient(
-    linear,
-    left top,
-    right bottom,
-    from(hsl(192, 100%, 67%)),
-    to(hsl(280, 87%, 65%))
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-</style>

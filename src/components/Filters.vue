@@ -1,29 +1,31 @@
 <template>
   <div
-    class="text-grayBlue-400 dark:text-dmGrayBlue-100 p-4 text-xs grid gap-2 grid-cols-8 justify-items-center"
+    class="text-grayBlue-400 dark:text-dmGrayBlue-100 p-4 text-xs flex > flex-wrap"
   >
-    <span class="col-start-1 col-span-2"> {{ openItems }} items to do </span>
+    <span class="col-start-1 col-span-2 p-1 flex-1">
+      {{ openItems }} items to do
+    </span>
     <span
       @click="emitSortItems('all')"
-      class="cursor-pointer hover:underline hover:text-brightBlue col-start-3 col-span-1 justify-self-end"
+      class="cursor-pointer hover:underline hover:text-brightBlue p-1 flex-2"
     >
       All</span
     >
     <span
       @click="emitSortItems('active')"
-      class="cursor-pointer hover:underline hover:text-brightBlue col-start-4 col-span-1"
+      class="cursor-pointer hover:underline hover:text-brightBlue p-1 flex-2"
     >
       Active</span
     >
     <span
       @click="emitSortItems('completed')"
-      class="cursor-pointer hover:underline hover:text-brightBlue col-start-5 col-span-1"
+      class="cursor-pointer hover:underline hover:text-brightBlue p-1 flex-2"
     >
       Completed</span
     >
     <span
       @click="emitSortItems('clear')"
-      class="cursor-pointer hover:underline hover:text-brightBlue col-start-7 col-span-2 pr-2"
+      class="cursor-pointer hover:underline hover:text-brightBlue p-1 flex-1 text-center"
     >
       Clear Completed</span
     >

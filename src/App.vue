@@ -1,12 +1,11 @@
 <template>
-  <div :class="mode">
+  <div :class="mode" class="relative">
+    <img :src="bgImage" class="h-64 bg-cover" alt="Header Image" />
     <div class="h-screen bg-grayBlue-100 dark:bg-dmBlue40">
-      <div class="h-48 bg-purple dark:bg-dmPurple">
-        <div class="container grid justify-items-center">
-          <div class="bg-transparent max-w-screen-sm min-w-min">
-            <Header :mode="mode" @change-mode="changeMode" />
-            <router-view />
-          </div>
+      <div class="container grid justify-items-center absolute top-0 pt-10">
+        <div class="bg-transparent max-w-screen-sm min-w-min">
+          <Header :mode="mode" @change-mode="changeMode" />
+          <router-view />
         </div>
       </div>
     </div>
@@ -22,6 +21,15 @@ export default {
     return {
       mode: "dark",
     };
+  },
+  computed: {
+    bgImage() {
+      if (this.mode === "dark") {
+        return require("../images/bg-desktop-dark.jpg");
+      } else {
+        return require("../images/bg-desktop-light.jpg");
+      }
+    },
   },
   components: {
     Header,

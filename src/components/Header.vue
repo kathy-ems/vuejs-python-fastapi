@@ -8,7 +8,7 @@
       class="text-customGray-100 col-start-8 col-span-1 justify-self-end pr-2"
     >
       <i
-        :class="[mode === 'light' ? 'fa-moon' : 'fa-sun', 'fa-solid']"
+        :class="[mode === 'light' ? `fa-moon` : 'fa-sun', 'fa-solid']"
         @click="$emit('change-mode')"
       ></i>
     </span>
@@ -19,7 +19,7 @@
 export default {
   name: "Header",
   props: {
-    mode: Boolean,
+    mode: String,
   },
 };
 </script>

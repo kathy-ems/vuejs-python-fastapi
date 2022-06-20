@@ -7,6 +7,7 @@
       @sort-items="sortItems"
       :tasks="tasks"
       :openItems="openItems"
+      :icons="icons"
     />
   </div>
 </template>
@@ -15,6 +16,8 @@
 // @ is an alias to /src
 import Tasks from "@/components/Tasks.vue";
 import AddTask from "@/components/AddTask.vue";
+import iconCheck from "../../images/icon-check.svg";
+import iconCross from "../../images/icon-cross.svg";
 
 export default {
   name: "Home",
@@ -27,6 +30,14 @@ export default {
       tasks: [],
       openItems: 0,
     };
+  },
+  computed: {
+    icons() {
+      return {
+        iconCheck,
+        iconCross,
+      };
+    },
   },
   methods: {
     async addTask(task) {
@@ -106,6 +117,5 @@ export default {
     this.tasks = await this.fetchTasks();
     this.getOpenItems(this.tasks);
   },
-  // emits: ["sort-items"],
 };
 </script>

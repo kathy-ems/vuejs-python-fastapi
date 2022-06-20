@@ -4,6 +4,3 @@
 
 @tailwind utilities;
 
-.display-none {
-  @apply hidden;
-}
