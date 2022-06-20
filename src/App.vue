@@ -1,10 +1,12 @@
 <template>
   <div :class="mode">
-    <div class="h-screen bg-purple dark:bg-dmPurple">
-      <div class="container grid justify-items-center">
-        <div class="bg-transparent max-w-screen-sm min-w-min">
-          <Header :mode="mode" @change-mode="changeMode" />
-          <router-view />
+    <div class="h-screen bg-grayBlue-100 dark:bg-dmBlue40">
+      <div class="h-48 bg-purple dark:bg-dmPurple">
+        <div class="container grid justify-items-center">
+          <div class="bg-transparent max-w-screen-sm min-w-min">
+            <Header :mode="mode" @change-mode="changeMode" />
+            <router-view />
+          </div>
         </div>
       </div>
     </div>
