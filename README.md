@@ -1,3 +1,19 @@
+### To start the app
+1. Download the repository
+`git clone http://genentech-vbadmd@git.codesubmit.io/genentech/todo-app-vue-beczns`
+
+2. Install JSON Server
+`npm install json-server`
+
+3. Install dependencies
+`npm install`
+
+4. Start the server
+`npm run dev`
+
+5. Start the front end
+`npm run serve`
+
 ### Objective
 
 Your challenge is to build out this todo app and get it looking as close to the design as possible.

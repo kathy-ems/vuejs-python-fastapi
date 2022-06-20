@@ -42,6 +42,9 @@ module.exports = {
           410: "hsl(237, 14%, 26%)",
         },
       },
+      letterSpacing: {
+        widest: ".3em",
+      },
     },
     fontFamily: {
       sans: ["Josefin Sans", "Sans-serif"],
