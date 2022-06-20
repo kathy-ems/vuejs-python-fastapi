@@ -106,6 +106,6 @@ export default {
     this.tasks = await this.fetchTasks();
     this.getOpenItems(this.tasks);
   },
-  emits: ["sort-items"],
+  // emits: ["sort-items"],
 };
 </script>
