@@ -7,19 +7,28 @@
     </span>
     <span
       @click="emitSortItems('all')"
-      class="cursor-pointer hover:underline hover:text-brightBlue p-1 flex-2"
+      :class="[
+        filterLevel === 'all' ? 'text-brightBlue' : '',
+        'cursor-pointer hover:underline hover:text-brightBlue p-1 flex-2',
+      ]"
     >
       All</span
     >
     <span
       @click="emitSortItems('active')"
-      class="cursor-pointer hover:underline hover:text-brightBlue p-1 flex-2"
+      :class="[
+        filterLevel === 'active' ? 'text-brightBlue' : '',
+        'cursor-pointer hover:underline hover:text-brightBlue p-1 flex-2',
+      ]"
     >
       Active</span
     >
     <span
       @click="emitSortItems('completed')"
-      class="cursor-pointer hover:underline hover:text-brightBlue p-1 flex-2"
+      :class="[
+        filterLevel === 'completed' ? 'text-brightBlue' : '',
+        'cursor-pointer hover:underline hover:text-brightBlue p-1 flex-2',
+      ]"
     >
       Completed</span
     >
@@ -37,6 +46,7 @@ export default {
   name: "Filters",
   props: {
     openItems: Number,
+    filterLevel: String,
   },
   methods: {
     emitSortItems(e) {

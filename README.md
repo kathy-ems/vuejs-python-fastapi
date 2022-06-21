@@ -1,4 +1,4 @@
-### To start the app
+## To start the app
 1. Download the repository
 `git clone http://genentech-vbadmd@git.codesubmit.io/genentech/todo-app-vue-beczns`
 
@@ -13,6 +13,9 @@
 
 5. Start the front end
 `npm run serve`
+
+6. Run the tests
+`npm run test:unit`
 
 ### Objective
 

@@ -5,7 +5,7 @@
     >
       TODO
     </span>
-    <span class="col-start-8 col-span-1 justify-self-end pr-2">
+    <span class="col-start-8 col-span-1 justify-self-end pr-2 cursor-pointer">
       <img
         v-if="mode === 'light'"
         :src="this.icons.iconMoon"

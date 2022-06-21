@@ -9,12 +9,12 @@
       :tasks="tasks"
       :openItems="openItems"
       :icons="icons"
+      :filterLevel="filterLevel"
     />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
 import Tasks from "@/components/Tasks.vue";
 import AddTask from "@/components/AddTask.vue";
 import iconCheck from "@/assets/icon-check.svg";
@@ -30,6 +30,7 @@ export default {
     return {
       tasks: [],
       openItems: 0,
+      filterLevel: "all",
     };
   },
   computed: {
@@ -107,6 +108,7 @@ export default {
           await this.deleteTask(task);
         });
       }
+      this.filterLevel = filter === "clear" ? "all" : filter;
     },
     async fetchTasks() {
       const res = await fetch("api/tasks?_sort=order&_order=asc");

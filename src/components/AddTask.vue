@@ -6,7 +6,7 @@
       <form @submit.prevent="onSubmit" class="add-form flex flex-wrap">
         <span>
           <button
-            class="w-5 h-5 rounded-full bg-transparent border inline-block align-middle border-dmGrayBlue-300"
+            class="cursor-default w-5 h-5 rounded-full bg-transparent border inline-block align-middle border-dmGrayBlue-300"
           ></button>
         </span>
         <span class="w-1/4 sm:w-1/4 md:w-1/4 lg:w-1/6 xl:w-1/6">

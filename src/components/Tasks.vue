@@ -9,7 +9,7 @@
         :list="tasks"
         ghost-class="ghost"
       >
-        <div :key="task.id" v-for="task in tasks">
+        <div :key="task.id" v-for="task in tasks" class="cursor-move">
           <Task
             @toggle-completed="$emit('toggle-completed', task.id)"
             @delete-task="$emit('delete-task', task)"
@@ -18,7 +18,11 @@
           />
         </div>
       </draggable>
-      <Filters @filter-items="filterItems" :openItems="openItems" />
+      <Filters
+        @filter-items="filterItems"
+        :openItems="openItems"
+        :filterLevel="filterLevel"
+      />
     </div>
     <div
       class="text-grayBlue-400 dark:text-dmGrayBlue-100 p-6 text-xs text-center"
@@ -39,6 +43,7 @@ export default {
     tasks: Array,
     openItems: Number,
     icons: Object,
+    filterLevel: String,
   },
   components: {
     Task,
