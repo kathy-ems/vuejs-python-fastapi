@@ -12,12 +12,14 @@
             : '',
           'col-start-1 col-end-7',
         ]"
+        data-test="todo-checkbox"
       >
         <span
           :class="[
             task.completed
               ? 'pl-1 bg-gradient-to-r from-teal to-purple border-none rounded-full'
               : 'tag:button w-5 h-5 rounded-full bg-transparent border inline-block align-middle border-dmGrayBlue-300',
+            'cursor-move',
           ]"
         >
           <img
@@ -31,7 +33,10 @@
           {{ task.text }}
         </span>
       </span>
-      <span class="col-start-8 col-span-1 justify-self-end pr-2">
+      <span
+        @click="$emit('delete-task')"
+        class="col-start-8 col-span-1 justify-self-end pr-2"
+      >
         <img :src="this.icons.iconCross" alt="Delete" class="inline-block" />
       </span>
     </div>

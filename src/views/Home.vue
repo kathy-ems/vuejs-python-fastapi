@@ -4,7 +4,8 @@
     <Tasks
       @toggle-completed="toggleCompleted"
       @delete-task="deleteTask"
-      @sort-items="sortItems"
+      @filter-items="filterItems"
+      @update-order="updateOrder"
       :tasks="tasks"
       :openItems="openItems"
       :icons="icons"
@@ -16,8 +17,8 @@
 // @ is an alias to /src
 import Tasks from "@/components/Tasks.vue";
 import AddTask from "@/components/AddTask.vue";
-import iconCheck from "../../images/icon-check.svg";
-import iconCross from "../../images/icon-cross.svg";
+import iconCheck from "@/assets/icon-check.svg";
+import iconCross from "@/assets/icon-cross.svg";
 
 export default {
   name: "Home",
@@ -92,15 +93,15 @@ export default {
       const openItems = tasks.filter((task) => task.completed === false);
       this.openItems = openItems.length;
     },
-    async sortItems(sorter) {
+    async filterItems(filter) {
       this.tasks = await this.fetchTasks();
-      if (sorter === "active") {
+      if (filter === "active") {
         this.tasks = this.tasks.filter((task) => task.completed === false);
       }
-      if (sorter === "completed") {
+      if (filter === "completed") {
         this.tasks = this.tasks.filter((task) => task.completed === true);
       }
-      if (sorter === "clear") {
+      if (filter === "clear") {
         const toDelete = this.tasks.filter((task) => task.completed === true);
         toDelete.forEach(async (task) => {
           await this.deleteTask(task);
@@ -108,9 +109,38 @@ export default {
       }
     },
     async fetchTasks() {
-      const res = await fetch("api/tasks");
+      const res = await fetch("api/tasks?_sort=order&_order=asc");
       const data = await res.json();
       return data;
+    },
+    async updateOrder(taskUpdateData) {
+      const { oldIndex, newIndex, id, text, completed } = taskUpdateData;
+      const newTask = {
+        id,
+        text,
+        order: newIndex,
+        completed,
+      };
+      // removes old location of task & adds task to new location
+      const originalData = await this.fetchTasks();
+      originalData.splice(oldIndex, 1);
+      originalData.splice(newIndex, 0, newTask);
+
+      // updates ordering; use promise.all for larger data sets
+      for (let i = 0; i < originalData.length; i++) {
+        const task = originalData[i];
+        task.order = i;
+        this.updateTask(task);
+      }
+    },
+    async updateTask(task) {
+      await fetch(`api/tasks/${task.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(task),
+      });
     },
   },
   async created() {

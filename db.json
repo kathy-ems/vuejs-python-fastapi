@@ -3,27 +3,32 @@
     {
       "id": 1,
       "text": "Doctors appt",
+      "order": 4,
       "completed": false
     },
     {
       "id": 2,
       "text": "Grocery Shopping",
-      "completed": false
+      "order": 1,
+      "completed": true
     },
     {
       "id": 3,
       "text": "Meeting at School",
-      "completed": true
+      "order": 0,
+      "completed": false
     },
     {
       "id": 4,
       "text": "Mail Letters",
-      "completed": false
+      "order": 2,
+      "completed": true
     },
     {
+      "id": 5,
       "text": "Dentist appt",
-      "completed": false,
-      "id": 5
+      "order": 3,
+      "completed": true
     }
   ]
 }

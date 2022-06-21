@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     emitSortItems(e) {
-      this.$emit("sort-items", e);
+      this.$emit("filter-items", e);
     },
   },
 };
