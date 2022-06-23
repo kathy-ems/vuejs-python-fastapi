@@ -43,35 +43,49 @@ export default {
   },
   methods: {
     async addTask(task) {
-      const res = await fetch("api/tasks", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(task),
-      });
-      const data = await res.json();
-      this.tasks = [...this.tasks, data[0]];
-      this.getOpenItems(this.tasks);
+      try {
+        const res = await fetch("api/tasks", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(task),
+        });
+        const data = await res.json();
+        this.tasks = [...this.tasks, data[0]];
+        this.getOpenItems(this.tasks);
+      } catch (e) {
+        console.log(e);
+      }
     },
     async toggleCompleted(_id) {
-      const taskToToggle = await this.fetchTask(_id);
-      const toggledTask = {
-        ...taskToToggle,
-        completed: !taskToToggle.completed,
-      };
-      const res = await fetch(`api/tasks/${_id}`, {
-        method: "PUT",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(toggledTask),
-      });
-      const data = await res.json();
-      this.tasks = this.tasks.map((task) =>
-        task._id === _id ? { ...task, completed: data.completed } : task
-      );
-      this.getOpenItems(this.tasks);
+      try {
+        const taskToToggle = await this.fetchTask(_id);
+        const toggledTask = {
+          ...taskToToggle,
+          completed: !taskToToggle.completed,
+        };
+
+        const res = await fetch(`api/tasks/${_id}`, {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(toggledTask),
+        });
+
+        if (res.status === 201) {
+          const data = await res.json();
+          this.tasks = this.tasks.map((task) =>
+            task._id === _id ? { ...task, completed: data.completed } : task
+          );
+          this.getOpenItems(this.tasks);
+        } else {
+          console.log("Something went wrong", res.status);
+        }
+      } catch (e) {
+        console.log("Unable to update task", e);
+      }
     },
     async fetchTask(_id) {
       const res = await fetch(`api/tasks/${_id}`);
@@ -95,20 +109,24 @@ export default {
       this.openItems = openItems.length;
     },
     async filterItems(filter) {
-      this.tasks = await this.fetchTasks();
-      if (filter === "active") {
-        this.tasks = this.tasks.filter((task) => task.completed === false);
+      try {
+        this.tasks = await this.fetchTasks();
+        if (filter === "active") {
+          this.tasks = this.tasks.filter((task) => task.completed === false);
+        }
+        if (filter === "completed") {
+          this.tasks = this.tasks.filter((task) => task.completed === true);
+        }
+        if (filter === "clear") {
+          const toDelete = this.tasks.filter((task) => task.completed === true);
+          toDelete.forEach(async (task) => {
+            await this.deleteTask(task);
+          });
+        }
+        this.filterLevel = filter === "clear" ? "all" : filter;
+      } catch (e) {
+        console.log(e);
       }
-      if (filter === "completed") {
-        this.tasks = this.tasks.filter((task) => task.completed === true);
-      }
-      if (filter === "clear") {
-        const toDelete = this.tasks.filter((task) => task.completed === true);
-        toDelete.forEach(async (task) => {
-          await this.deleteTask(task);
-        });
-      }
-      this.filterLevel = filter === "clear" ? "all" : filter;
     },
     async fetchTasks() {
       try {
@@ -120,38 +138,50 @@ export default {
       }
     },
     async updateOrder(taskUpdateData) {
-      const { oldIndex, newIndex, _id, text, completed } = taskUpdateData;
-      const newTask = {
-        _id,
-        text,
-        order: newIndex,
-        completed,
-      };
-      // removes old location of task & adds task to new location
-      const originalData = await this.fetchTasks();
-      originalData.splice(oldIndex, 1);
-      originalData.splice(newIndex, 0, newTask);
+      try {
+        const { oldIndex, newIndex, _id, text, completed } = taskUpdateData;
+        const newTask = {
+          _id,
+          text,
+          order: newIndex,
+          completed,
+        };
+        // removes old location of task & adds task to new location
+        const originalData = await this.fetchTasks();
+        originalData.splice(oldIndex, 1);
+        originalData.splice(newIndex, 0, newTask);
 
-      // updates ordering; use promise.all for larger data sets
-      for (let i = 0; i < originalData.length; i++) {
-        const task = originalData[i];
-        task.order = i;
-        this.updateTask(task);
+        // updates ordering; use promise.all for larger data sets
+        for (let i = 0; i < originalData.length; i++) {
+          const task = originalData[i];
+          task.order = i;
+          this.updateTask(task);
+        }
+      } catch (e) {
+        console.log(e);
       }
     },
     async updateTask(task) {
-      await fetch(`api/tasks/${task._id}`, {
-        method: "PUT",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(task),
-      });
+      try {
+        await fetch(`api/tasks/${task._id}`, {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(task),
+        });
+      } catch (e) {
+        console.log(e);
+      }
     },
   },
   async created() {
-    this.tasks = await this.fetchTasks();
-    this.getOpenItems(this.tasks);
+    try {
+      this.tasks = await this.fetchTasks();
+      this.getOpenItems(this.tasks);
+    } catch (e) {
+      console.log(e);
+    }
   },
 };
 </script>

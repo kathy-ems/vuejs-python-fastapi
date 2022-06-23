@@ -3,6 +3,29 @@ const mongodb = require("mongodb");
 
 const router = express.Router();
 
+/*
+ * Obtain all tasks
+ * GET http://localhost:5000/api/tasks
+ * Returns an array of tasks as objects
+ *
+ * Example A): data on success:
+ * [
+ *   {
+ *    "_id":"62b4ca25e32e1449255247be",
+ *    "text":"New Task",
+ *    "order":0,
+ *    "completed":false,
+ *    "createdAt":"2022-06-23T20:16:37.871Z"
+ *   },
+ *   {
+ *    "_id":"62b4b915c8a9c69c8153c0e9",
+ *    "text":"New Task2",
+ *    "order":1,
+ *    "completed":true,
+ *    "createdAt":"2022-06-23T19:05:13.026Z"
+ *   }
+ *  ]
+ */
 router.get("/", async (req, res) => {
   try {
     const tasksCollection = await loadTasksCollection();
@@ -12,7 +35,11 @@ router.get("/", async (req, res) => {
   }
 });
 
-// used for adding a new task
+/*
+ * Add a task
+ * PUT http://localhost:5000/api/tasks/62b4ca25e32e1449255247be
+ * Adds a task to the database
+ */
 router.post("/", async (req, res) => {
   try {
     const tasksCollection = await loadTasksCollection();
@@ -40,6 +67,74 @@ router.post("/", async (req, res) => {
   }
 });
 
+/*
+ * Get a task (used for toggling completed and ordering)
+ * GET http://localhost:5000/api/tasks/62b4ca25e32e1449255247be
+ * Returns an array of tasks as objects
+ *
+ * Example A): data on success:
+ * [
+ *   {
+ *    "_id":"62b4ca25e32e1449255247be",
+ *    "text":"New Task",
+ *    "order":0,
+ *    "completed":false,
+ *    "createdAt":"2022-06-23T20:16:37.871Z"
+ *   }
+ *  ]
+ */
+router.get("/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const tasksCollection = await loadTasksCollection();
+    let task = await tasksCollection
+      .find({ _id: new mongodb.ObjectId(id) })
+      .next();
+    res.status(200).send(task);
+  } catch (e) {
+    console.log("Unable to get tasks", e);
+  }
+});
+
+/*
+ * Updates a task (used for toggling completed and ordering)
+ * PUT http://localhost:5000/api/tasks/62b4ca25e32e1449255247be
+ * Updates a task in the database
+ */
+router.put("/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const tasksCollection = await loadTasksCollection();
+
+    // update the task
+    await tasksCollection.updateOne(
+      { _id: new mongodb.ObjectId(id) },
+      {
+        $set: {
+          text: req.body.text,
+          order: req.body.order || 0,
+          completed: req.body.completed || false,
+        },
+      }
+    );
+
+    // obtain the updated task
+    let updatedTask = await tasksCollection
+      .find({ _id: new mongodb.ObjectId(id) })
+      .next();
+
+    // return updated task
+    res.status(201).send(updatedTask);
+  } catch (e) {
+    console.log("Unable to update task in Mongo", e);
+  }
+});
+
+/*
+ * Delete a task
+ * DELETE http://localhost:5000/api/tasks/62b4ca25e32e1449255247be
+ * Deletes a task from the database
+ */
 router.delete("/:id", async (req, res) => {
   try {
     const tasksCollection = await loadTasksCollection();

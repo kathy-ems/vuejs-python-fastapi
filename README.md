@@ -2,19 +2,21 @@
 1. Download the repository
 `git clone http://genentech-vbadmd@git.codesubmit.io/genentech/todo-app-vue-beczns`
 
-2. Install JSON Server
-`npm install json-server`
+2. Install MongoDB shell version v4.2.17
 
 3. Install dependencies
 `npm install`
 
-4. Start the server
+4. Start mongo
+`mongod`
+
+5. Start the server
 `npm run dev`
 
-5. Start the front end
+6. Start the front end
 `npm run serve`
 
-6. Run the tests
+7. Run the tests
 `npm run test:unit`
 
 ### Objective
