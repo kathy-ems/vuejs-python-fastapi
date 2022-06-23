@@ -9,9 +9,9 @@
         :list="tasks"
         ghost-class="ghost"
       >
-        <div :key="task.id" v-for="task in tasks" class="cursor-move">
+        <div :key="task._id" v-for="task in tasks" class="cursor-move">
           <Task
-            @toggle-completed="$emit('toggle-completed', task.id)"
+            @toggle-completed="$emit('toggle-completed', task._id)"
             @delete-task="$emit('delete-task', task)"
             :task="task"
             :icons="icons"

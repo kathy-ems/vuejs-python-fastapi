@@ -54,13 +54,13 @@ export default {
       this.tasks = [...this.tasks, data];
       this.getOpenItems(this.tasks);
     },
-    async toggleCompleted(id) {
-      const taskToToggle = await this.fetchTask(id);
+    async toggleCompleted(_id) {
+      const taskToToggle = await this.fetchTask(_id);
       const toggledTask = {
         ...taskToToggle,
         completed: !taskToToggle.completed,
       };
-      const res = await fetch(`api/tasks/${id}`, {
+      const res = await fetch(`api/tasks/${_id}`, {
         method: "PUT",
         headers: {
           "Content-type": "application/json",
@@ -69,23 +69,23 @@ export default {
       });
       const data = await res.json();
       this.tasks = this.tasks.map((task) =>
-        task.id === id ? { ...task, completed: data.completed } : task
+        task._id === _id ? { ...task, completed: data.completed } : task
       );
       this.getOpenItems(this.tasks);
     },
-    async fetchTask(id) {
-      const res = await fetch(`api/tasks/${id}`);
+    async fetchTask(_id) {
+      const res = await fetch(`api/tasks/${_id}`);
       const data = await res.json();
       return data;
     },
     async deleteTask(task) {
-      const id = task.id;
+      const _id = task._id;
       if (confirm(`Delete task ${task.text}?`)) {
-        const res = await fetch(`api/tasks/${id}`, {
+        const res = await fetch(`api/tasks/${_id}`, {
           method: "DELETE",
         });
         res.status === 200
-          ? (this.tasks = this.tasks.filter((task) => task.id !== id))
+          ? (this.tasks = this.tasks.filter((task) => task._id !== _id))
           : alert("Error deleting task");
         this.getOpenItems(this.tasks);
       }
@@ -111,14 +111,18 @@ export default {
       this.filterLevel = filter === "clear" ? "all" : filter;
     },
     async fetchTasks() {
-      const res = await fetch("api/tasks?_sort=order&_order=asc");
-      const data = await res.json();
-      return data;
+      try {
+        const res = await fetch("api/tasks");
+        const data = await res.json();
+        return data;
+      } catch (e) {
+        console.log("Unable to get tasks", e);
+      }
     },
     async updateOrder(taskUpdateData) {
-      const { oldIndex, newIndex, id, text, completed } = taskUpdateData;
+      const { oldIndex, newIndex, _id, text, completed } = taskUpdateData;
       const newTask = {
-        id,
+        _id,
         text,
         order: newIndex,
         completed,
@@ -136,7 +140,7 @@ export default {
       }
     },
     async updateTask(task) {
-      await fetch(`api/tasks/${task.id}`, {
+      await fetch(`api/tasks/${task._id}`, {
         method: "PUT",
         headers: {
           "Content-type": "application/json",
