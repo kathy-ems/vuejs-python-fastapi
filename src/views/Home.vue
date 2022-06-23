@@ -51,7 +51,7 @@ export default {
         body: JSON.stringify(task),
       });
       const data = await res.json();
-      this.tasks = [...this.tasks, data];
+      this.tasks = [...this.tasks, data[0]];
       this.getOpenItems(this.tasks);
     },
     async toggleCompleted(_id) {
