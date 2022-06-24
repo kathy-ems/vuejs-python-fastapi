@@ -7,7 +7,6 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
-    "serve:json": "json-server --watch db.json --port 5000",
     "start": "node server/index.js",
     "dev": "nodemon server/index.js"
   },
