@@ -1,10 +1,11 @@
 ## To start the app
 1. Download the repository
-`git clone https://github.com/kathy-ems/vuejs-express-mongo.git`
+`git clone https://github.com/kathy-ems/vuejs-python-fastapi`
 
 2. Install MongoDB shell version v4.2.17
 
 2. Install Python3
+`brew install python3`
 
 3. Install dependencies
 `npm install`
@@ -23,4 +24,5 @@
 7. Run the tests
 `npm run test:unit`
 
-
+## API Docs
+Go to http://127.0.0.1:8000/docs
