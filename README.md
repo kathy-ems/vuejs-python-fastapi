@@ -4,17 +4,23 @@
 
 2. Install MongoDB shell version v4.2.17
 
+2. Install Python3
+
 3. Install dependencies
 `npm install`
+`pip3 install fastapi`
+`pip3 install uvicorn`
 
 4. Start mongo
 `mongod`
 
-5. Start the server
-`npm run dev`
+5. Start the server (dev)
+`uvicorn index:app --reload`
 
 6. Start the front end
 `npm run serve`
 
 7. Run the tests
 `npm run test:unit`
+
+
