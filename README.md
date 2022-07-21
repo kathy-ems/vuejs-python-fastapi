@@ -16,7 +16,7 @@
 `mongod`
 
 5. Start the server (dev)
-`uvicorn index:app --reload`
+`uvicorn server/index:app --reload`
 
 6. Start the front end
 `npm run serve`
@@ -26,3 +26,9 @@
 
 ## API Docs
 Go to http://127.0.0.1:8000/docs
+
+
+## Routes
+Main app http://localhost:8080
+API via main app http://localhost:8080/api/tasks
+API http://localhost:8000/tasks

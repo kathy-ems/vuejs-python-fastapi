@@ -11,13 +11,17 @@ class Task(BaseModel):
 
 tasks = {
   1: {
-    "text": "Milk",
+    "text": "Get Milk",
     "completed": True
   }
 }
 
-@app.get("/tasks/")
-def get_task(_id: int = Path(None, description="The ID of the task")):
+@app.get("/")
+def get_task():
+    return ["hello world"]
+
+@app.get("/tasks")
+def get_task():
     return tasks
 
 @app.get("/tasks/{_id}")
