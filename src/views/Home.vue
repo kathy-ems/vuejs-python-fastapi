@@ -52,6 +52,7 @@ export default {
           body: JSON.stringify(task),
         });
         const data = await res.json();
+        console.log("<--- return3", data);
         this.tasks = [...this.tasks, data[0]];
         this.getOpenItems(this.tasks);
       } catch (e) {

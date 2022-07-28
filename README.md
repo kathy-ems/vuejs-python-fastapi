@@ -16,7 +16,8 @@
 `mongod`
 
 5. Start the server (dev)
-`uvicorn server/index:app --reload`
+`cd server`
+`uvicorn index:app --reload`
 
 6. Start the front end
 `npm run serve`
