@@ -52,11 +52,10 @@ export default {
           body: JSON.stringify(task),
         });
         const data = await res.json();
-        console.log("<--- return3", data);
-        this.tasks = [...this.tasks, data[0]];
+        this.tasks = [...this.tasks, data];
         this.getOpenItems(this.tasks);
       } catch (e) {
-        console.log(e);
+        console.log("Error adding task", e);
       }
     },
     async toggleCompleted(_id) {
@@ -75,7 +74,7 @@ export default {
           body: JSON.stringify(toggledTask),
         });
 
-        if (res.status === 201) {
+        if (res.status === 201 || res.status === 200) {
           const data = await res.json();
           this.tasks = this.tasks.map((task) =>
             task._id === _id ? { ...task, completed: data.completed } : task
@@ -106,8 +105,12 @@ export default {
       }
     },
     getOpenItems(tasks) {
-      const openItems = tasks.filter((task) => task.completed === false);
-      this.openItems = openItems.length;
+      try {
+        const openItems = tasks.filter((task) => task.completed === false);
+        this.openItems = openItems.length;
+      } catch (e) {
+        console.log("Error getOpenItems", e);
+      }
     },
     async filterItems(filter) {
       try {
